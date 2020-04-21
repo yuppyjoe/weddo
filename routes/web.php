@@ -17,11 +17,20 @@ Route::get('/', function () {
     return view('welcome');
   });
 
-Route::get('/about', 'AboutController@index');
-//ROute::get('/corona', 'CoronaController@index');
-Route::get('/services', 'ServicesController@index');
-Route::get('/photography', 'ServicesController@photo');
-Route::get('/planning', 'ServicesController@plan');
-Route::get('/venue', 'ServicesController@venue');
-Route::get('/catering', 'ServicesController@catering');
-Route::get('/cars', 'ServicesController@cars');
+Route::group(['prefix' => 'auth'], function () {
+    Route::resource('make/type', 'UserController');
+    Route::get('users/check', 'UserController@userCheck')->name('username-check');
+    Route::resource('users', 'UserController')->names(
+        [
+            'store' => 'users.new',
+            'update' => 'users.edit',
+            'index' => 'users',
+            'destroy' => 'users.delete',
+            'show' => 'user',
+        ]
+    );
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
