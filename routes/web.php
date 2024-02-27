@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
+use App\Http\Controllers\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +16,11 @@ use App\Http\Controllers;
 
 Route::get('/', function () {
     return view('welcome');
-  });
+});
 
 // Route::get('/about', 'AboutController@index');
 //ROute::get('/corona', 'CoronaController@index');
-Route::get('/services', );
+Route::get('/services',);
 Route::get('/services', 'ServicesController@index');
 Route::get('/photography', 'ServicesController@photo');
 Route::get('/planning', 'ServicesController@plan');
